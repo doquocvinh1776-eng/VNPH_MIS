@@ -1,0 +1,179 @@
+<!doctype html>
+
+<html lang="vi">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>VNPH - Đăng Nhập Tài Khoản</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <!-- Google Fonts for better typography matching -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&amp;display=swap" rel="stylesheet" />
+  <style data-purpose="custom-config">
+    body {
+      font-family: "Roboto", sans-serif;
+      background-color: #f4f4f4;
+    }
+
+    .pnj-yellow-bg {
+      background-color: #fcfaf0;
+    }
+
+    .pnj-blue {
+      background-color: #304c89;
+    }
+
+    .pnj-blue-text {
+      color: #304c89;
+    }
+
+    .pnj-gold {
+      color: #b38e44;
+    }
+
+    .login-card {
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      max-width: 450px;
+    }
+
+    .tab-active {
+      border-bottom: 3px solid #304c89;
+      color: #000;
+    }
+
+    .tab-inactive {
+      border-bottom: 2px solid #e5e7eb;
+      color: #9ca3af;
+    }
+
+    .nav-border-bottom {
+      border-bottom: 1px solid #e5e1d1;
+    }
+
+    .filter-purple {
+      color: #8b5cf6;
+    }
+
+    .filter-bg {
+      background-color: #f9f9f9;
+    }
+  </style>
+</head>
+
+<body class="text-gray-800">
+  <!-- BEGIN: MainHeader -->
+  <!-- HEADER -->
+  <!-- header.html -->
+  <div id="header"></div>
+  <script>
+    fetch("header.html")
+  </script>
+
+  <!-- END: MainHeader -->
+  <!-- BEGIN: MainContent -->
+  <main class="py-16 container mx-auto px-4 flex flex-col items-center">
+    <div class="text-center mb-8">
+      <h1 class="text-2xl font-bold uppercase tracking-wide mb-2">
+        <b>TÀI KHOẢN CỦA TÔI</b>
+      </h1>
+      <p class="text-sm text-black-700 font-inter">
+        <b>Đăng nhập ngay để nhận các ưu đãi độc quyền</b>
+      </p>
+    </div>
+    <!-- Login Card -->
+    <div class="login-card bg-white w-full p-8 rounded-sm">
+      <!-- Tabs -->
+      <div class="flex mb-8">
+        <div class="flex-1 text-center py-2 font-bold tab-active cursor-pointer">
+          ĐĂNG NHẬP
+        </div>
+        <div class="flex-1 text-center py-2 font-bold tab-inactive cursor-pointer">
+          ĐĂNG KÝ
+        </div>
+      </div>
+      <!-- Form -->
+      <form id="loginForm" class="space-y-4">
+        <div>
+          <input class="w-full border-gray-300 p-3 text-sm focus:border-gray-500 focus:ring-0" placeholder="Nhập email*"
+            type="email" id="email" required />
+        </div>
+
+        <div>
+          <input class="w-full border-gray-300 p-3 text-sm focus:border-gray-500 focus:ring-0" placeholder="Mật khẩu*"
+            type="password" id="password" required />
+        </div>
+
+        <div class="text-right">
+          <a class="text-xs italic text-blue-800 hover:underline" href="#">
+            Quên mật khẩu?
+          </a>
+        </div>
+
+        <button
+          class="w-full pnj-blue text-white py-3 font-bold text-sm tracking-widest uppercase hover:bg-blue-900 transition-colors"
+          type="submit">
+          Đăng nhập
+        </button>
+      </form>
+      <script>
+        document
+          .getElementById("loginForm")
+          .addEventListener("submit", function (e) {
+            e.preventDefault(); // chặn reload
+
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+
+            // Fake kiểm tra đơn giản
+            if (email === "admin@gmail.com" && password === "123456") {
+              alert("Đăng nhập admin thành công!");
+              localStorage.setItem("role", "admin");
+              window.location.href = "admin.html";
+            } else if (email === "user@gmail.com" && password === "123456") {
+              alert("Đăng nhập thành công!");
+              localStorage.setItem("role", "user");
+              window.location.href = "home.html";
+            } else {
+              alert("Sai email hoặc mật khẩu!");
+            }
+          });
+      </script>
+      <!-- Divider -->
+      <div class="relative flex items-center my-6">
+        <div class="flex-grow border-t border-gray-200"></div>
+        <span class="flex-shrink mx-4 text-gray-400 text-sm">Hoặc</span>
+        <div class="flex-grow border-t border-gray-200"></div>
+      </div>
+      <!-- Social Login -->
+      <div class="space-y-3">
+        <button
+          class="w-full border border-gray-300 flex items-center justify-center py-2 px-4 space-x-3 hover:bg-gray-50 transition-colors">
+          <img alt="Google" class="w-5 h-5" src="img_web/GG.png" />
+          <span class="text-sm font-medium">Đăng nhập bằng Google</span>
+        </button>
+        <button
+          class="w-full border border-gray-300 flex items-center justify-center py-2 px-4 space-x-3 hover:bg-gray-50 transition-colors">
+          <img alt="Facebook" class="w-5 h-5" src="img_web/FB.png" />
+          <span class="text-sm font-medium">Đăng nhập bằng Facebook</span>
+        </button>
+      </div>
+    </div>
+  </main>
+  <!-- END: MainContent -->
+
+  <hr class="border-gray-300" />
+  <!-- BEGIN: MainFooter -->
+  <div id="footer"></div>
+  <script>
+    fetch("footer.html")
+      .then((res) => res.text())
+      .then((data) => {
+        document.getElementById("footer").innerHTML = data;
+      });
+  </script>
+
+  <!-- END: MainFooter -->
+</body>
+
+</html>

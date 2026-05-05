@@ -1,0 +1,43 @@
+<!-- Sidebar Navigation Component — dùng chung cho profile.html & orders.html -->
+<aside class="w-64 shrink-0" id="shared-sidebar">
+  <div class="mb-8 flex items-center gap-4">
+    <div class="w-10 h-10 bg-black rounded-full flex items-center justify-center overflow-hidden" id="sidebar-avatar">
+      <span class="material-symbols-outlined text-white"
+        style="font-variation-settings: &quot;FILL&quot; 1">person</span>
+    </div>
+    <div>
+      <p class="text-[10px] text-slate-500 font-medium">Xin chào</p>
+      <p id="sidebar-user-name" class="font-bold text-sm text-slate-800">Pandora</p>
+    </div>
+  </div>
+  <nav class="flex flex-col gap-1">
+    <a id="sidebar-link-profile"
+      class="sidebar-link text-slate-800 flex items-center gap-3 py-2 px-2 hover:bg-slate-100 rounded transition-colors"
+      href="profile.html">
+      <span class="material-symbols-outlined text-xl">person</span>
+      <span class="text-sm">Hồ sơ của tôi</span>
+    </a>
+    <a id="sidebar-link-orders"
+      class="sidebar-link text-slate-800 flex items-center gap-3 py-2 px-2 hover:bg-slate-100 rounded transition-colors"
+      href="orders.html">
+      <span class="material-symbols-outlined text-xl">shopping_bag</span>
+      <span class="text-sm">Đơn hàng</span>
+    </a>
+    <a class="sidebar-link text-slate-800 flex items-center gap-3 py-2 px-2 hover:bg-slate-100 rounded transition-colors"
+      href="#">
+      <span class="material-symbols-outlined text-xl">loyalty</span>
+      <span class="text-sm">Ưu đãi và mã giảm giá</span>
+    </a>
+    <a class="sidebar-link text-slate-800 flex items-center gap-3 py-2 px-2 hover:bg-slate-100 rounded transition-colors"
+      href="#">
+      <span class="material-symbols-outlined text-xl">info</span>
+      <span class="text-sm">Chính sách và thông tin</span>
+    </a>
+    <a id="sidebar-link-logout"
+      class="sidebar-link text-[#E57373] flex items-center gap-3 py-2 px-2 hover:bg-red-50 rounded mt-4 transition-colors"
+      href="#">
+      <span class="material-symbols-outlined text-xl">logout</span>
+      <span class="text-sm">Đăng xuất</span>
+    </a>
+  </nav>
+</aside>

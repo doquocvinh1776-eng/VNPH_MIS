@@ -1,0 +1,377 @@
+<!doctype html>
+
+<html lang="vi">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800;900&amp;display=swap"
+    rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+    rel="stylesheet" />
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "on-secondary": "#ffffff",
+            "surface-container-lowest": "#ffffff",
+            "on-surface-variant": "#444650",
+            "on-tertiary-fixed": "#1c1c18",
+            "on-tertiary-container": "#b4b2ac",
+            "surface-variant": "#e5e2e1",
+            "primary-container": "#2b427d",
+            "outline-variant": "#c5c6d1",
+            "surface-container-low": "#f6f3f2",
+            "surface-container-highest": "#e5e2e1",
+            "secondary-fixed-dim": "#e9c349",
+            "on-tertiary-fixed-variant": "#474742",
+            "primary-fixed-dim": "#b3c5ff",
+            error: "#ba1a1a",
+            background: "#f4f4f4",
+            "on-tertiary": "#ffffff",
+            "error-container": "#ffdad6",
+            "secondary-container": "#fed65b",
+            "on-primary-container": "#9bb0f3",
+            "on-secondary-container": "#745c00",
+            "surface-container-high": "#eae7e7",
+            "surface-container": "#f0eded",
+            surface: "#fcf9f8",
+            "on-error": "#ffffff",
+            "surface-dim": "#dcd9d9",
+            "on-secondary-fixed": "#241a00",
+            "on-primary-fixed-variant": "#2d447f",
+            "surface-tint": "#465c99",
+            "inverse-on-surface": "#f3f0ef",
+            "tertiary-fixed-dim": "#c9c6c0",
+            "secondary-fixed": "#ffe088",
+            outline: "#757681",
+            "on-primary-fixed": "#001849",
+            "on-error-container": "#93000a",
+            "on-primary": "#ffffff",
+            "primary-fixed": "#dae1ff",
+            "tertiary-fixed": "#e5e2db",
+            "on-surface": "#1c1b1b",
+            "inverse-primary": "#b3c5ff",
+            primary: "#2b427d",
+            "on-secondary-fixed-variant": "#574500",
+            "surface-bright": "#fcf9f8",
+            "on-background": "#1c1b1b",
+            secondary: "#735c00",
+            "tertiary-container": "#454540",
+            tertiary: "#2f2f2a",
+            "inverse-surface": "#313030",
+          },
+          borderRadius: {
+            DEFAULT: "0.125rem",
+            lg: "0.25rem",
+            xl: "0.5rem",
+            full: "0.75rem",
+          },
+          spacing: {
+            "container-max": "1280px",
+            "section-padding": "80px",
+            gutter: "24px",
+            unit: "8px",
+            "margin-edge": "40px",
+          },
+          fontFamily: {
+            h3: ["Manrope"],
+            "body-lg": ["Manrope"],
+            h2: ["Manrope"],
+            h1: ["Manrope"],
+            "body-md": ["Manrope"],
+            "label-sm": ["Manrope"],
+          },
+          fontSize: {
+            h3: ["24px", { lineHeight: "1.4", fontWeight: "600" }],
+            "body-lg": ["18px", { lineHeight: "1.6", fontWeight: "400" }],
+            h2: [
+              "32px",
+              {
+                lineHeight: "1.3",
+                letterSpacing: "-0.01em",
+                fontWeight: "600",
+              },
+            ],
+            h1: [
+              "48px",
+              {
+                lineHeight: "1.2",
+                letterSpacing: "-0.02em",
+                fontWeight: "700",
+              },
+            ],
+            "body-md": ["16px", { lineHeight: "1.6", fontWeight: "400" }],
+            "label-sm": [
+              "14px",
+              {
+                lineHeight: "1.2",
+                letterSpacing: "0.05em",
+                fontWeight: "500",
+              },
+            ],
+          },
+        },
+      },
+    };
+  </script>
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings:
+        "FILL" 0,
+        "wght" 400,
+        "GRAD" 0,
+        "opsz" 24;
+    }
+
+    body {
+      font-family: "Manrope", sans-serif;
+    }
+  </style>
+</head>
+
+<body class="bg-[#f4f4f4] text-on-surface">
+  <!-- TopAppBar -->
+  <script src="header-init.js"></script>
+  <script src="sidebar-init.js"></script>
+  <div id="header2"></div>
+  <script>
+    fetch("header2.html")
+      .then((res) => res.text())
+      .then((data) => {
+        document.getElementById("header2").innerHTML = data;
+        initHeader();
+      });
+  </script>
+  <main class="max-w-[1280px] mx-auto px-8 py-10 flex gap-8">
+    <!-- Sidebar Navigation (shared component) -->
+    <div id="sidebar-container"></div>
+    <script>
+      fetch("sidebar.html")
+        .then((res) => res.text())
+        .then((data) => {
+          document.getElementById("sidebar-container").innerHTML = data;
+          initSidebar();
+        });
+    </script>
+    <!-- Main Content Area -->
+    <section class="flex-1">
+      <div class="bg-white border border-slate-300 shadow-sm rounded-sm">
+        <!-- Title Header -->
+        <div class="px-8 py-4 border-b border-slate-200">
+          <h1 class="text-lg font-bold text-slate-800">HỒ SƠ CỦA TÔI</h1>
+        </div>
+        <div class="p-4">
+          <div class="flex flex-col lg:flex-row">
+            <!-- Form Section -->
+            <div class="flex-1 space-y-5">
+              <div class="grid grid-cols-[140px_1fr] items-center">
+                <div class="flex items-center gap-2 text-slate-800">
+                  <span class="material-symbols-outlined text-lg">person</span>
+                  <label class="text-sm">Tên khách hàng</label>
+                </div>
+                <div class="text-sm text-slate-600">Pandora</div>
+              </div>
+              <div class="grid grid-cols-[140px_1fr] items-center">
+                <div class="flex items-center gap-2 text-slate-800">
+                  <span class="material-symbols-outlined text-lg">wc</span>
+                  <label class="text-sm">Giới Tính</label>
+                </div>
+                <div class="text-sm text-slate-600">Nữ</div>
+              </div>
+              <div class="grid grid-cols-[140px_1fr] items-center">
+                <div class="flex items-center gap-2 text-slate-800">
+                  <span class="material-symbols-outlined text-lg">call</span>
+                  <label class="text-sm">Số Điện Thoại</label>
+                </div>
+                <div class="text-sm text-slate-600">0842516245</div>
+              </div>
+              <div class="grid grid-cols-[140px_1fr] items-center">
+                <div class="flex items-center gap-2 text-slate-800">
+                  <span class="material-symbols-outlined text-lg">mail</span>
+                  <label class="text-sm">Email</label>
+                </div>
+                <div class="text-sm text-slate-600">_</div>
+              </div>
+              <div class="grid grid-cols-[140px_1fr] items-center">
+                <div class="flex items-center gap-2 text-slate-800">
+                  <span class="material-symbols-outlined text-lg">calendar_month</span>
+                  <label class="text-sm">Ngày sinh</label>
+                </div>
+                <div class="text-sm text-slate-600">03/04/2006</div>
+              </div>
+              <div class="grid grid-cols-[140px_1fr] items-center">
+                <div class="flex items-center gap-2 text-slate-800">
+                  <span class="material-symbols-outlined text-lg">location_on</span>
+                  <label class="text-sm">Tỉnh/thành phố</label>
+                </div>
+                <div class="text-sm text-slate-600">TP. Hồ Chí Minh</div>
+              </div>
+              <div class="grid grid-cols-[140px_1fr] items-center">
+                <div class="flex items-center gap-2 text-slate-800">
+                  <span class="material-symbols-outlined text-lg">location_on</span>
+                  <label class="text-sm">Phường/xã</label>
+                </div>
+                <div class="text-sm text-slate-600">P. Tân Hưng</div>
+              </div>
+              <div class="grid grid-cols-[140px_1fr] items-center">
+                <div class="flex items-center gap-2 text-slate-800">
+                  <span class="material-symbols-outlined text-lg">location_on</span>
+                  <label class="text-sm">Địa chỉ</label>
+                </div>
+                <div class="text-sm text-slate-600">19, Nguyễn Hữu Thọ</div>
+              </div>
+              <div class="grid grid-cols-[140px_1fr] items-center">
+                <div class="flex items-center gap-2 text-slate-800">
+                  <span class="material-symbols-outlined text-lg">card_membership</span>
+                  <label class="text-sm">Hạng thành viên</label>
+                </div>
+                <div class="text-sm text-slate-600">Member</div>
+              </div>
+            </div>
+            <!-- Avatar Section -->
+            <div class="w-full lg:w-64 flex flex-col items-center gap-6 border-l border-slate-200 mt-8 lg:mt-0 lg:ml-8">
+              <div class="flex justify-end mb-4">
+                <a class="text-[#446CB3] text-sm italic flex items-center gap-1 hover:underline" href="#">
+                  <span class="material-symbols-outlined text-sm">edit</span> Sửa
+                </a>
+              </div>
+              <div class="w-24 h-24 bg-slate-100 rounded-full flex items-center justify-center">
+                <span class="material-symbols-outlined text-6xl text-slate-800"
+                  style="font-variation-settings: &quot;FILL&quot; 1">person</span>
+              </div>
+              <button
+                class="bg-[#446CB3] text-white px-6 py-2 rounded-md text-sm font-medium hover:bg-[#34518d] transition-colors">
+                Chọn ảnh
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <!-- Footer -->
+  <div id="footer"></div>
+  <script>
+    fetch("footer.html")
+      .then((res) => res.text())
+      .then((data) => {
+        document.getElementById("footer").innerHTML = data;
+      });
+  </script>
+  <script>
+    const fileInput = document.createElement("input");
+    fileInput.type = "file";
+    fileInput.accept = "image/*";
+    fileInput.style.display = "none";
+    document.body.appendChild(fileInput);
+
+    const chooseAvatarBtn = document.querySelector("button");
+
+    chooseAvatarBtn.onclick = () => {
+      fileInput.click();
+    };
+
+    fileInput.addEventListener("change", function () {
+      const file = this.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+
+      reader.onload = function () {
+        localStorage.setItem("avatar", reader.result);
+
+        const avatarBox = document.querySelector(".w-24.h-24");
+        avatarBox.innerHTML = `
+        <img src="${reader.result}" class="w-full h-full object-cover rounded-full">
+      `;
+
+        // Cập nhật luôn avatar trên sidebar
+        const sidebarAvatar = document.getElementById("sidebar-avatar");
+        if (sidebarAvatar) {
+          sidebarAvatar.innerHTML = `<img src="${reader.result}" class="w-full h-full object-cover rounded-full" alt="Avatar">`;
+        }
+      };
+
+      reader.readAsDataURL(file);
+    });
+
+    const editBtn = document.querySelector(".flex.justify-end.mb-4 a");
+
+    editBtn.addEventListener("click", function (e) {
+      e.preventDefault();
+
+      const rows = document.querySelectorAll(".flex-1.space-y-5 .grid");
+
+      rows.forEach((row) => {
+        const el = row.querySelector(".text-slate-600");
+        if (!el) return;
+
+        const label = row.querySelector("label").innerText;
+
+        // Không cho sửa dòng Hạng thành viên
+        if (label === "Hạng thành viên") return;
+
+        const value = el.innerText;
+        const input = document.createElement("input");
+        input.value = value;
+        input.className = "border p-1 text-sm w-full edit-input";
+        input.dataset.label = label;
+
+        el.replaceWith(input);
+      });
+
+      editBtn.innerHTML = "Lưu";
+      editBtn.onclick = saveProfile;
+    });
+
+    function saveProfile(e) {
+      if (e) e.preventDefault();
+
+      const inputs = document.querySelectorAll(".edit-input");
+      let data = JSON.parse(localStorage.getItem("profileObj")) || {};
+
+      inputs.forEach((input) => {
+        data[input.dataset.label] = input.value;
+      });
+
+      localStorage.setItem("profileObj", JSON.stringify(data));
+      alert("Đã lưu thành công!");
+
+      location.reload();
+    }
+
+    window.addEventListener("DOMContentLoaded", () => {
+      const data = JSON.parse(localStorage.getItem("profileObj"));
+
+      if (data) {
+        const rows = document.querySelectorAll(".flex-1.space-y-5 .grid");
+
+        rows.forEach((row) => {
+          const label = row.querySelector("label").innerText;
+          const el = row.querySelector(".text-slate-600");
+
+          if (el && data[label] !== undefined) {
+            el.innerText = data[label];
+          }
+        });
+      }
+
+      const avatar = localStorage.getItem("avatar");
+
+      if (avatar) {
+        const avatarBox = document.querySelector(".w-24.h-24");
+        avatarBox.innerHTML = `
+        <img src="${avatar}" class="w-full h-full object-cover rounded-full">
+      `;
+      }
+    });
+  </script>
+  <script src="search-global.js"></script>
+</body>
+
+</html>

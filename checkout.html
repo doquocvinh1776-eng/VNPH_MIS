@@ -1,0 +1,467 @@
+<!doctype html>
+<html lang="vi">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>Thanh toán | VNPH</title>
+
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+    rel="stylesheet" />
+
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings:
+        "FILL" 0,
+        "wght" 400,
+        "GRAD" 0,
+        "opsz" 24;
+    }
+
+    body {
+      font-family: "Manrope", sans-serif;
+    }
+  </style>
+</head>
+
+<body class="bg-[#f5f5f5] text-on-surface font-manrope">
+  <script src="products.js"></script>
+  <script src="database.js"></script>
+
+  <script src="header-init.js"></script>
+  <div id="header2"></div>
+  <script>
+    fetch("header2.html")
+      .then((res) => res.text())
+      .then((data) => {
+        document.getElementById("header2").innerHTML = data;
+        initHeader();
+      });
+  </script>
+
+  <main class="max-w-[1280px] mx-auto py-10 px-8">
+    <div class="max-w-4xl mx-auto bg-white shadow-sm overflow-hidden border border-gray-100">
+      <div class="px-8 pt-4">
+        <a class="inline-flex items-center gap-1 text-sm text-gray-700 hover:text-[#2B427D] transition-colors"
+          href="home.html">
+          <span class="material-symbols-outlined text-base">
+            chevron_left
+          </span>
+          <span class="italic">Quay lại</span>
+        </a>
+      </div>
+
+      <div class="bg-[#2B427D] py-5 text-center">
+        <h2 class="text-xl font-bold text-white uppercase tracking-wider">
+          THÔNG TIN ĐẶT HÀNG
+        </h2>
+      </div>
+
+      <div class="p-8 md:p-12">
+        <section class="mb-10" id="cart-items-container"></section>
+
+        <form class="space-y-8">
+          <section>
+            <h3 class="text-lg font-bold text-black mb-4">
+              Thông tin người mua
+            </h3>
+
+            <div class="flex gap-6 mb-4">
+              <label class="flex items-center gap-2 cursor-pointer">
+                <input checked class="text-black focus:ring-black" name="gender" type="radio" />
+                <span class="text-sm">Chị</span>
+              </label>
+
+              <label class="flex items-center gap-2 cursor-pointer">
+                <input class="text-black focus:ring-black" name="gender" type="radio" />
+                <span class="text-sm">Anh</span>
+              </label>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <input id="customer-name" required
+                class="w-full border-gray-300 rounded px-4 py-2 text-sm focus:ring-[#2B427D] focus:border-[#2B427D]"
+                placeholder="Họ và tên" type="text" />
+
+              <input id="customer-phone" required
+                class="w-full border-gray-300 rounded px-4 py-2 text-sm focus:ring-[#2B427D] focus:border-[#2B427D]"
+                placeholder="Số điện thoại" type="tel" />
+
+              <input id="customer-email"
+                class="w-full border-gray-300 rounded px-4 py-2 text-sm focus:ring-[#2B427D] focus:border-[#2B427D]"
+                placeholder="Email" type="email" />
+
+              <input
+                class="w-full border-gray-300 rounded px-4 py-2 text-sm focus:ring-[#2B427D] focus:border-[#2B427D]"
+                placeholder="Ngày tháng năm sinh" type="text" />
+            </div>
+          </section>
+
+          <section>
+            <h3 class="text-lg font-bold text-black mb-4">
+              Hình thức nhận hàng
+            </h3>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+              <button
+                class="flex items-center justify-center gap-3 p-3 border border-[#d4af37] bg-[#fffce8] rounded-lg text-[#2B427D]"
+                type="button">
+                <span class="text-2xl">🛵</span>
+
+                <div class="text-left">
+                  <div class="text-sm font-bold text-blue-800">
+                    Giao hàng tận nơi
+                  </div>
+
+                  <div class="text-[10px] text-gray-600">
+                  </div>
+                </div>
+              </button>
+
+              <button
+                class="flex items-center justify-center gap-3 p-3 border border-gray-300 bg-white rounded-lg text-black hover:border-[#2B427D] transition-all"
+                type="button">
+                <span class="text-2xl">🛍️</span>
+                <span class="text-sm">Nhận tại cửa hàng</span>
+              </button>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+              <div class="relative">
+                <select
+                  class="w-full border-gray-300 rounded px-4 py-2 text-sm text-gray-500 focus:ring-[#2B427D] appearance-none">
+                  <option>Chọn tỉnh/thành</option>
+                </select>
+
+                <span
+                  class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 pointer-events-none text-gray-400">
+                  expand_more
+                </span>
+              </div>
+
+              <div class="relative">
+                <select
+                  class="w-full border-gray-300 rounded px-4 py-2 text-sm text-gray-500 focus:ring-[#2B427D] appearance-none">
+                  <option>Phường/Xã</option>
+                </select>
+
+                <span
+                  class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 pointer-events-none text-gray-400">
+                  expand_more
+                </span>
+              </div>
+            </div>
+
+            <input id="customer-address" required
+              class="w-full border-gray-300 rounded px-4 py-2 text-sm focus:ring-[#2B427D] focus:border-[#2B427D] mb-4"
+              placeholder="Địa chỉ chi tiết" type="text" />
+
+            <label class="flex items-start gap-2 cursor-pointer mt-2">
+              <input checked class="mt-0.5 rounded-full border-gray-400 text-black focus:ring-black" type="radio" />
+
+              <span class="text-[11px] text-gray-700">
+                Tôi đồng ý cho VNPH thu thập, xử lý dữ liệu cá nhân của tôi
+                theo quy định tại
+                <a class="underline" href="#">Thông báo này</a> và theo quy
+                định của pháp luật
+              </span>
+            </label>
+          </section>
+
+          <section>
+            <h3 class="text-lg font-bold text-black mb-4">
+              Hình thức thanh toán
+            </h3>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+              <label
+                class="flex items-center justify-between p-3 border border-blue-600 bg-white rounded-lg cursor-pointer">
+                <div class="flex items-center gap-2">
+                  <span class="material-symbols-outlined text-gray-600">
+                    payments
+                  </span>
+
+                  <span class="text-xs font-medium">
+                    Thanh toán tiền mặt khi nhận hàng (COD)
+                  </span>
+                </div>
+
+                <input checked class="w-4 h-4 text-blue-600 focus:ring-blue-500" name="payment" type="radio"
+                  value="Thanh toán tiền mặt khi nhận hàng (COD)" />
+              </label>
+
+              <label
+                class="flex items-center justify-between p-3 border border-gray-300 bg-white rounded-lg cursor-pointer">
+                <div class="flex items-center gap-2">
+                  <span class="material-symbols-outlined text-gray-600">
+                    credit_card
+                  </span>
+
+                  <span class="text-xs font-medium">
+                    Thanh toán thẻ quốc tế
+                  </span>
+                </div>
+
+                <input class="w-4 h-4 text-blue-600 focus:ring-blue-500" name="payment" type="radio"
+                  value="Thanh toán thẻ quốc tế" />
+              </label>
+
+              <label
+                class="flex items-center justify-between p-3 border border-gray-300 bg-white rounded-lg cursor-pointer">
+                <div class="flex items-center gap-2">
+                  <span class="material-symbols-outlined text-gray-600">
+                    account_balance
+                  </span>
+
+                  <span class="text-xs font-medium">
+                    Thanh toán chuyển khoản
+                  </span>
+                </div>
+
+                <input class="w-4 h-4 text-blue-600 focus:ring-blue-500" name="payment" type="radio"
+                  value="Thanh toán chuyển khoản" />
+              </label>
+
+              <label
+                class="flex items-center justify-between p-3 border border-gray-300 bg-white rounded-lg cursor-pointer">
+                <div class="flex items-center gap-2">
+                  <span class="material-symbols-outlined text-pink-600">
+                    smartphone
+                  </span>
+
+                  <span class="text-xs font-medium">
+                    Thanh toán bằng ví MOMO
+                  </span>
+                </div>
+
+                <input class="w-4 h-4 text-blue-600 focus:ring-blue-500" name="payment" type="radio"
+                  value="Thanh toán bằng ví MOMO" />
+              </label>
+            </div>
+          </section>
+
+          <section>
+            <h3 class="text-2xl font-extrabold text-black mb-2">
+              Khuyến mãi
+            </h3>
+
+            <div class="flex justify-between items-center mb-4">
+              <p class="text-sm text-gray-700">Dùng mã ưu đãi dành cho bạn</p>
+
+              <button class="text-sm text-gray-700 hover:underline" type="button">
+                Chọn ưu đãi có sẵn
+              </button>
+            </div>
+
+            <div class="space-y-1 text-sm">
+              <div class="flex justify-between">
+                <span class="text-blue-800">Tạm tính:</span>
+                <span class="font-medium" id="summary-subtotal">0 đ</span>
+              </div>
+
+              <div class="flex justify-between">
+                <span class="text-blue-800">Giao hàng:</span>
+                <span class="text-blue-600">Miễn phí</span>
+              </div>
+
+              <div class="flex justify-between">
+                <span class="text-blue-800">Giảm giá:</span>
+                <span id="summary-discount">-0 đ</span>
+              </div>
+
+              <div class="flex justify-between pt-1 font-bold">
+                <span class="text-blue-800">Tổng tiền:</span>
+                <span id="summary-total">0 đ</span>
+              </div>
+            </div>
+          </section>
+
+          <section>
+            <h3 class="text-2xl font-extrabold text-black mb-4">
+              Ghi chú đơn hàng
+            </h3>
+
+            <textarea
+              class="w-full border-2 border-blue-400 rounded-lg p-4 text-sm focus:ring-blue-500 focus:border-blue-500 min-h-[120px]"
+              placeholder="Ghi chú tại đây"></textarea>
+          </section>
+
+          <button type="submit"
+            class="w-full bg-[#2b427d] text-white py-3 rounded-lg font-bold text-lg hover:brightness-110 active:scale-[0.99] transition-all block text-center">
+            Đặt hàng
+          </button>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <div id="footer"></div>
+
+  <script>
+    fetch("footer.html")
+      .then((res) => res.text())
+      .then((data) => {
+        document.getElementById("footer").innerHTML = data;
+      });
+  </script>
+  <script src="search-global.js"></script>
+
+  <script>
+    function parsePrice(priceStr) {
+      if (typeof priceStr === "number") return priceStr;
+      if (!priceStr) return 0;
+      return parseInt(String(priceStr).replace(/[^\d]/g, "")) || 0;
+    }
+
+    function renderCheckout() {
+      const cart = JSON.parse(localStorage.getItem("cart")) || [];
+      const container = document.getElementById("cart-items-container");
+
+      if (!container) return;
+
+      if (cart.length === 0) {
+        container.innerHTML =
+          '<p class="text-center py-4 text-gray-500">Giỏ hàng của bạn đang trống.</p>';
+
+        document.getElementById("summary-subtotal").textContent = "0 đ";
+        document.getElementById("summary-total").textContent = "0 đ";
+        document.getElementById("summary-discount").textContent = "-0 đ";
+        document.getElementById("summary-total").dataset.total = 0;
+        return;
+      }
+
+      let subtotal = 0;
+
+      container.innerHTML = cart
+        .map((item) => {
+          const price = parsePrice(item.price);
+          const qty = Number(item.quantity) || 1;
+          const itemTotal = price * qty;
+          const productDB = getProductById(item.id);
+          const stock = productDB ? productDB.stock : 0;
+
+          subtotal += itemTotal;
+
+          return `
+              <div class="flex items-start gap-6 border-b border-gray-100 pb-6 mb-6 last:border-0 last:mb-0">
+                <img
+                  alt="${item.title || "Sản phẩm"}"
+                  class="w-28 h-28 object-cover rounded border"
+                  src="${item.img || ""}"
+                />
+
+                <div class="space-y-1 flex-1">
+                  <h4 class="text-base font-semibold text-[#2B427D] leading-snug">
+                    ${item.title || "Sản phẩm VNPH"}
+                  </h4>
+
+                  <p class="text-sm text-gray-500">Mã: ${item.id || "N/A"}</p>
+
+                  <p class="text-sm ${stock < qty ? "text-red-500" : "text-green-600"
+            }">
+                    Tồn kho: ${stock}
+                  </p>
+
+                  <div class="flex items-center gap-4 mt-2">
+                    <p class="text-sm text-gray-600">
+                      Số lượng:
+                      <span class="font-bold text-black">${qty}</span>
+                    </p>
+
+                    <p class="text-sm text-gray-600">
+                      Đơn giá:
+                      <span class="font-bold text-[#e6b139] text-base">
+                        ${price.toLocaleString()} đ
+                      </span>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            `;
+        })
+        .join("");
+
+      const discount = subtotal > 10000000 ? Math.floor(subtotal * 0.05) : 0;
+      const total = subtotal - discount;
+
+      document.getElementById("summary-subtotal").textContent =
+        subtotal.toLocaleString() + " đ";
+
+      document.getElementById("summary-discount").textContent =
+        "-" + discount.toLocaleString() + " đ";
+
+      document.getElementById("summary-total").textContent =
+        total.toLocaleString() + " đ";
+
+      document.getElementById("summary-total").dataset.total = total;
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      renderCheckout();
+
+      const form = document.querySelector("form");
+
+      if (form) {
+        form.addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          const cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+          if (cart.length === 0) {
+            alert("Giỏ hàng của bạn đang trống!");
+            return;
+          }
+
+          for (const item of cart) {
+            const productDB = getProductById(item.id);
+
+            if (!productDB || productDB.stock < item.quantity) {
+              alert(`Sản phẩm "${item.title}" không đủ hàng tồn!`);
+              return;
+            }
+          }
+
+          // Không trừ tồn kho tại đây — chỉ trừ khi đơn hàng được xác nhận (orders.html)
+
+          const name = document.getElementById("customer-name").value;
+          const phone = document.getElementById("customer-phone").value;
+          const email = document.getElementById("customer-email").value;
+          const address = document.getElementById("customer-address").value;
+
+          const payment = document.querySelector(
+            'input[name="payment"]:checked',
+          );
+
+          const profile = JSON.parse(localStorage.getItem("profileObj")) || {};
+          const accountPhone = profile["Số điện thoại"] || "0842516245";
+
+          const newOrder = {
+            id: "ORD-" + Math.floor(Math.random() * 1000000),
+            date: new Date().toLocaleString("vi-VN"),
+            customer: { name, phone, email, address },
+            accountPhone: accountPhone,
+            items: cart,
+            total: parseInt(
+              document.getElementById("summary-total").dataset.total || 0,
+            ),
+            paymentMethod: payment ? payment.value : "COD",
+            status: "Chờ xác nhận",
+          };
+
+          saveOrder(newOrder);
+          localStorage.removeItem("cart");
+
+          alert("Đặt hàng thành công! Đơn hàng đang chờ xác nhận.");
+          window.location.href = "orders.html";
+        });
+      }
+    });
+  </script>
+</body>
+
+</html>
